@@ -1,51 +1,119 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - GestorTareas</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <title>@ViewData["Title"] - Gestor de Tareas</title>
+
+    <!-- ICONOS -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+
+    <!-- CSS PERSONAL -->
+    <link rel="stylesheet" href="~/css/layout.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/GestorTareas.styles.css" asp-append-version="true" />
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+
+        .app-header {
+            background-color: blue;
+            color: white;
+            padding: 14px 0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+
+        .main-content {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 18px;
+            min-height: calc(100vh - 80px);
+            display: block;
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+
+        .nav-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+            .nav-title i {
+                font-size: 1.3rem;
+                color: #88c2ff;
+            }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+            .nav-links a {
+                color: #d6e4f5;
+                text-decoration: none;
+                font-weight: 600;
+                transition: 0.2s;
+            }
+
+                .nav-links a:hover {
+                    color: #ffffff;
+                }
+
+
+        .nav-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.6rem;
+            display: none;
+            cursor: pointer;
+        }
+
+    </style>
 </head>
+
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">GestorTareas</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
+    <header class="app-header">
+        <div class="nav-container">
+
+            <div class="nav-title">
+                <i class="fas fa-tasks"></i>
+                <span>Gestor de Tareas Colaborativo</span>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - GestorTareas - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            <nav class="nav-links">
+                <a asp-page="/Index">Inicio</a>
+                <a asp-page="/Tareas/Index">Tareas</a>
+            </nav>
+
         </div>
-    </footer>
+    </header>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <!-- CONTENEDOR PRINCIPAL -->
+    <main class="main-content">
+        @RenderBody()
+    </main>
 
     @await RenderSectionAsync("Scripts", required: false)
+
+    <script>
+        document.getElementById("navToggle").addEventListener("click", () => {
+            document.getElementById("mobileMenu").classList.toggle("open");
+        });
+    </script>
 </body>
 </html>

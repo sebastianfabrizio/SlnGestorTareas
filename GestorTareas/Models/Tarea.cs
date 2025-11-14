@@ -1,23 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
-namespace GestorTareas.Models;
-
-public partial class Tarea
+namespace GestorTareas.Models
 {
-    public int Id { get; set; }
+    public class Tarea
+    {
+        public int Id { get; set; }
 
-    public string Titulo { get; set; } = null!;
+        [Display(Name = "Título")]
+        [Required(ErrorMessage = "El título es obligatorio.")]
+        [StringLength(200)]
+        public string Titulo { get; set; } = null!;
 
-    public string? Descripcion { get; set; }
+        [Display(Name = "Descripción")]
+        public string? Descripcion { get; set; }
 
-    public DateTime FechaCreacion { get; set; }
+        [Display(Name = "Fecha de creación")]
+        [DataType(DataType.DateTime)]
+        public DateTime FechaCreacion { get; set; }
 
-    public DateTime? FechaVencimiento { get; set; }
+        [Display(Name = "Fecha de vencimiento")]
+        [DataType(DataType.Date)]
+        [Required(ErrorMessage = "La fecha de vencimiento es obligatorio.")]
+        public DateTime? FechaVencimiento { get; set; }
 
-    public string Estado { get; set; } = null!;
+        [Display(Name = "Estado")]
+        public string Estado { get; set; } = "Pendiente";
 
-    public int UsuarioId { get; set; }
+        [Display(Name = "Usuario")]
+        [Required(ErrorMessage = "Debe seleccionar un usuario.")]
+        public int? UsuarioId { get; set; }
 
-    public virtual Usuario Usuario { get; set; } = null!;
+        public Usuario? Usuario { get; set; }
+    }
 }

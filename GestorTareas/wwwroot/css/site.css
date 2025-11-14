@@ -1,22 +1,210 @@
-html {
-  font-size: 14px;
-}
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+* {
+    box-sizing: border-box;
 }
 
 body {
-  margin-bottom: 60px;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    margin: 0;
+    padding: 0;
+    color: #222;
+    background: #f6f7fb;
+    line-height: 1.4;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 28px auto;
+    padding: 0 16px;
+}
+
+.page-title {
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 18px;
+    font-size: 1.5rem;
+    color: #0b2545;
+}
+
+
+.table-wrap {
+    background: #fff;
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 2px 6px rgba(8,15,30,0.04);
+    overflow: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 720px;
+}
+
+    .table thead th {
+        background: #0b57a4; 
+        color: #fff;
+        font-weight: 600;
+        text-align: center;
+        padding: 10px 12px;
+        font-size: 0.95rem;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .table tbody td {
+        padding: 10px 12px;
+        vertical-align: middle;
+        border-bottom: 1px solid #eef2f6;
+    }
+
+    .table tbody tr:nth-child(even) {
+        background: #fbfdff;
+    }
+
+
+.row-title {
+    font-weight: 600;
+    color: #0b2545;
+}
+
+.badge {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+    min-width: 96px;
+    text-align: center;
+}
+
+.badge-pendiente {
+    background: #6c757d;
+    color: #fff;
+}
+
+.badge-enprogreso {
+    background: #ffd966;
+    color: #3b2d00;
+}
+
+.badge-completada {
+    background: #28a745;
+    color: #fff;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    border: none;
+    padding: 8px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+
+.btn-edit {
+    background: #17a2b8;
+    color: white;
+}
+
+.btn-start {
+    background: #f0ad4e;
+    color: white;
+}
+
+.btn-complete {
+    background: #28a745;
+    color: white;
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+}
+
+
+.form-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 18px;
+    box-shadow: 0 2px 6px rgba(8,15,30,0.04);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.form-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.field {
+    flex: 1 1 320px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 8px;
+}
+
+label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #2b3b55;
+}
+
+input[type="text"],
+input[type="date"],
+textarea,
+select {
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #dbe6f0;
+    background: #fff;
+    font-size: 0.95rem;
+    outline: none;
+}
+
+input[readonly] {
+    background: #f3f6fb;
+}
+
+textarea {
+    min-height: 96px;
+    resize: vertical;
+}
+
+.text-error {
+    color: #c53030;
+    font-size: 0.9rem;
+    margin-top: 4px;
+}
+
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 12px;
+}
+
+@media (max-width: 720px) {
+    .table {
+        min-width: 600px;
+    }
+
+    .field {
+        flex-basis: 100%;
+    }
+
+    .page-title {
+        font-size: 1.25rem;
+    }
 }

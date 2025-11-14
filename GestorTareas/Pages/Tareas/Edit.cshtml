@@ -1,0 +1,61 @@
+﻿@page
+@model GestorTareas.Pages.Tareas.EditModel
+
+<div class="container">
+    <h1 class="page-title">Editar Tarea</h1>
+
+    <div class="form-card">
+        <form method="post" novalidate>
+            <div class="form-row">
+                <div class="field">
+                    <label asp-for="Tarea.Titulo"></label>
+                    <input asp-for="Tarea.Titulo" />
+                    <span asp-validation-for="Tarea.Titulo" class="text-error"></span>
+                </div>
+
+                <div class="field">
+                    <label asp-for="Tarea.UsuarioId"></label>
+                    <select asp-for="Tarea.UsuarioId" asp-items="Model.UsuariosItems"></select>
+                    <span asp-validation-for="Tarea.UsuarioId" class="text-error"></span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="field" style="flex-basis:100%">
+                    <label asp-for="Tarea.Descripcion"></label>
+                    <textarea asp-for="Tarea.Descripcion"></textarea>
+                    <span asp-validation-for="Tarea.Descripcion" class="text-error"></span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="field">
+                    <label asp-for="Tarea.FechaVencimiento"></label>
+                    <input asp-for="Tarea.FechaVencimiento" type="date" />
+                    <span asp-validation-for="Tarea.FechaVencimiento" class="text-error"></span>
+                </div>
+
+                <div class="field">
+                    <label asp-for="Tarea.FechaCreacion"></label>
+                    <input asp-for="Tarea.FechaCreacion" readonly />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="field">
+                    <label asp-for="Tarea.Estado"></label>
+                    <input asp-for="Tarea.Estado" readonly />
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-edit" style="background:#2e7d32; color:white;">Guardar cambios</button>
+                <a class="btn" href="/Tareas" style="background:#bfc6cf; color:#122034; padding:10px 14px; border-radius:8px; text-decoration:none;">Volver</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

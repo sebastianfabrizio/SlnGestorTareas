@@ -1,0 +1,59 @@
+﻿@page
+@model GestorTareas.Pages.Tareas.IndexModel
+
+<div class="container">
+    <h1 class="page-title">Listado de Tareas</h1>
+
+    <div class="table-wrap">
+        <form method="post" id="form-anti">@Html.AntiForgeryToken()</form>
+
+        <table class="table" role="table" aria-label="Listado de tareas">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Descripción</th>
+                    <th>Usuario</th>
+                    <th>Fecha vencimiento</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var tarea in Model.ListaTareas)
+                {
+                    <tr>
+                        <td class="row-title">@tarea.Titulo</td>
+                        <td>@tarea.Descripcion</td>
+                        <td>@tarea.Usuario?.Nombre</td>
+                        <td>@tarea.FechaVencimiento?.ToString("yyyy-MM-dd")</td>
+
+                        <td>
+                            @{
+                                var estado = tarea.Estado ?? "Pendiente";
+                                var cls = estado == "Completada" ? "badge-completada" : estado == "En progreso" ? "badge-enprogreso" : "badge-pendiente";
+                            }
+                            <span class="badge @cls js-badge" data-id="@tarea.Id">@estado</span>
+                        </td>
+
+                        <td>
+                            <div class="actions" role="group" aria-label="acciones tarea @tarea.Id">
+                                <a class="btn btn-edit" href="/Tareas/Edit?id=@tarea.Id">Editar</a>
+
+                                <button class="btn btn-danger btn-eliminar" data-id="@tarea.Id">Eliminar</button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div style="text-align:center; margin-top:18px;">
+        <a class="btn btn-edit" style="background:#0b57a4; color:white; padding:10px 14px; border-radius:8px; text-decoration:none;" href="/Tareas/Create">Crear nueva tarea</a>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/tareas.js"></script>
+}
